@@ -1,18 +1,38 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <b-container>
+        <b-row>
+
+            <b-col md="6" v-for="(item,index) in getTopRated" :key="index">
+                <Card :item="item"></Card>
+            </b-col>
+
+
+        </b-row>
+    </b-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+    import Card from '../components/Card';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    import {mapGetters,mapActions} from 'vuex';
+
+    export default {
+        components: {
+            Card
+        },
+        computed:{
+            ...mapGetters([
+                "getTopRated"
+            ])
+        },
+        methods:{
+            ...mapActions([
+                "fetchTopRated"
+            ])
+        },
+
+        created() {
+            this.fetchTopRated();
+        }
+    }
 </script>
