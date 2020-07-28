@@ -12,7 +12,7 @@ const store = new Vuex.Store({
         movieTopRated: ["test"],
     },
     getters: {
-        getTopRated(state){
+        getTopRated(state) {
             return state.movieTopRated;
         }
     },
@@ -28,7 +28,15 @@ const store = new Vuex.Store({
                 .then(function (response) {
                     commit("setTopRated", response.data.results);
                 })
+        },
 
+        fetchDetail({state}, movieId) {
+
+
+            return axios.get(`https://api.themoviedb.org/3/movie/${movieId}` + state.apiKey)
+                .then(function (response) {
+                    return response.data;
+                })
         }
     }
 })
