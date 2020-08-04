@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <!--include component nameinden geliyor-->
+        <keep-alive include="Home">
+            <router-view></router-view>
+        </keep-alive>
+
     </div>
 </template>
 
